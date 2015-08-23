@@ -1,5 +1,5 @@
 /*********************************************************************
-This is an example for our Monochrome OLEDs based on SSD1306 drivers
+This is an example for our Monochrome OLEDs based on SH1106 drivers
 
   Pick one up today in the adafruit shop!
   ------> http://www.adafruit.com/category/63_98
@@ -19,10 +19,10 @@ All text above, and the splash screen must be included in any redistribution
 #include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
+#include <Adafruit_SH1106.h>
 
 #define OLED_RESET 4
-Adafruit_SSD1306 display(OLED_RESET);
+Adafruit_SH1106 display(OLED_RESET);
 
 #define NUMFLAKES 10
 #define XPOS 0
@@ -50,15 +50,15 @@ static const unsigned char PROGMEM logo16_glcd_bmp[] =
   B01110000, B01110000,
   B00000000, B00110000 };
 
-#if (SSD1306_LCDHEIGHT != 64)
-#error("Height incorrect, please fix Adafruit_SSD1306.h!");
+#if (SH1106_LCDHEIGHT != 64)
+#error("Height incorrect, please fix Adafruit_SH1106.h!");
 #endif
 
 void setup()   {                
   Serial.begin(9600);
 
   // by default, we'll generate the high voltage from the 3.3v line internally! (neat!)
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3D);  // initialize with the I2C addr 0x3D (for the 128x64)
+  display.begin(SH1106_SWITCHCAPVCC, 0x3D);  // initialize with the I2C addr 0x3D (for the 128x64)
   // init done
   
   // Show image buffer on the display hardware.
