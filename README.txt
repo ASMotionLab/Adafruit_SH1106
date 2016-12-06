@@ -1,16 +1,21 @@
-This is a library for Monochrome OLEDs based on SH1106 drivers (warning: only SPI has been tested!)
+This is a library for Monochrome OLEDs based on SH1106 drivers (warning: only I2C has been tested on at STM32F103CB)
+
+Changes where also required to STM32 Arduino library Wire/HardWire.cpp
+Line #40
+    uint8 HardWire::process() {
+      int8 res = i2c_master_xfer(sel_hard, &itc_msg, 1, 100); //Change the 0 to 100 to set a timeout
 
   Pick one up today in the adafruit shop!
   ------> http://www.adafruit.com/category/63_98
 
-These displays use SPI to communicate, 4 or 5 pins are required to  
+These displays use SPI to communicate, 4 or 5 pins are required to
 interface
 
-Adafruit invests time and resources providing this open source code, 
-please support Adafruit and open-source hardware by purchasing 
+Adafruit invests time and resources providing this open source code,
+please support Adafruit and open-source hardware by purchasing
 products from Adafruit!
 
-Written by Limor Fried/Ladyada  for Adafruit Industries.  
+Written by Limor Fried/Ladyada  for Adafruit Industries.
 Scrolling code contributed by Michael Gregg
 BSD license, check license.txt for more information
 All text above must be included in any redistribution
@@ -21,4 +26,4 @@ Place the Adafruit_SH1106 library folder your <arduinosketchfolder>/libraries/ f
 
 You will also have to download the Adafruit GFX Graphics core which does all the circles, text, rectangles, etc. You can get it from
 https://github.com/adafruit/Adafruit-GFX-Library
-and download/install that library as well 
+and download/install that library as well
