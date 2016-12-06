@@ -4,24 +4,24 @@ This is a library for our Monochrome OLEDs based on SH1106 drivers
   Pick one up today in the adafruit shop!
   ------> http://www.adafruit.com/category/63_98
 
-These displays use SPI to communicate, 4 or 5 pins are required to  
+These displays use SPI to communicate, 4 or 5 pins are required to
 interface
 
-Adafruit invests time and resources providing this open source code, 
-please support Adafruit and open-source hardware by purchasing 
+Adafruit invests time and resources providing this open source code,
+please support Adafruit and open-source hardware by purchasing
 products from Adafruit!
 
-Written by Limor Fried/Ladyada  for Adafruit Industries.  
+Written by Limor Fried/Ladyada  for Adafruit Industries.
 BSD license, check license.txt for more information
 All text above, and the splash screen must be included in any redistribution
 *********************************************************************/
 
 #if ARDUINO >= 100
  #include "Arduino.h"
- #define WIRE_WRITE Wire.write
+ #define WIRE_WRITE HWIRE.write
 #else
  #include "WProgram.h"
-  #define WIRE_WRITE Wire.send
+  #define WIRE_WRITE HWIRE.send
 #endif
 
 #ifdef __SAM3X8E__
@@ -31,6 +31,9 @@ All text above, and the splash screen must be included in any redistribution
   typedef volatile uint8_t PortReg;
   typedef uint8_t PortMask;
 #endif
+
+//typedef volatile uint32_t PortReg
+
 
 #include <SPI.h>
 #include <Adafruit_GFX.h>
@@ -161,7 +164,7 @@ class Adafruit_SH1106 : public Adafruit_GFX {
   void fastSPIwrite(uint8_t c);
 
   boolean hwSPI;
-  PortReg *mosiport, *clkport, *csport, *dcport;
+  volatile uint32_t *mosiport, *clkport, *csport, *dcport;
   PortMask mosipinmask, clkpinmask, cspinmask, dcpinmask;
 
   inline void drawFastVLineInternal(int16_t x, int16_t y, int16_t h, uint16_t color) __attribute__((always_inline));
