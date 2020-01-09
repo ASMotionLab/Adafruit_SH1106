@@ -1,12 +1,11 @@
-This is a library for Monochrome OLEDs based on SH1106 drivers (warning: only I2C has been tested on at STM32F103CB)
+This is a library for Monochrome OLEDs based on SH1106 drivers, adapted for STM32 (warning: only I2C has been tested on at STM32F103CB)
 
-Changes where also required to STM32 Arduino library Wire/HardWire.cpp
-Line #40
-    uint8 HardWire::process() {
-      int8 res = i2c_master_xfer(sel_hard, &itc_msg, 1, 100); //Change the 0 to 100 to set a timeout
+No other changes should berequired.
 
   Pick one up today in the adafruit shop!
-  ------> http://www.adafruit.com/category/63_98
+  ------> https://www.adafruit.com/product/938
+
+________________________________________________________________________________
 
 These displays use SPI to communicate, 4 or 5 pins are required to
 interface
